@@ -12,7 +12,9 @@ the created Cloud Function.
 ## Pre-requisites
 
 - Make sure that the user running terraform for deploying this tool has the necessary permissions:
-    - TODO: Add permissions list
+    - On project where this tool will be deployed: The user should have the role "Owner".
+    - On the project which holds the billing data export: The user should have the role "Project IAM Admin".
+    - On the billing account for which budgets will be created: The user should have the role "Billing Account Administrator".
 - Create a bucket in your project to store the Terraform state of this tool, if you have not already.
 - Have the name of this bucket ready.
 - Take the name of your Terraform state bucket and put it in terraform/backend.tf, instead of BUCKET_NAME_GOES_HERE.
