@@ -1,0 +1,5 @@
+Flask>=2.2.5
+functions-framework==3.*
+google-cloud-bigquery
+google-api-python-client
+pytz
