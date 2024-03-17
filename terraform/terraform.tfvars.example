@@ -1,0 +1,41 @@
+# tfvars file with placeholders for variables
+
+project_id = "<project_id>"
+
+region = "<region>"
+
+gcp_service_list = [
+  "cloudresourcemanager.googleapis.com",
+  "serviceusage.googleapis.com",
+  "iam.googleapis.com",
+  "run.googleapis.com",
+  "cloudbuild.googleapis.com",
+  "cloudscheduler.googleapis.com",
+  "storage.googleapis.com",
+  "cloudfunctions.googleapis.com",
+  "bigquery.googleapis.com",
+  "billingbudgets.googleapis.com",
+  "discoveryengine.googleapis.com"
+]
+
+emails = [
+  "<email1@example.com>",
+  "<email2@example.com>"
+]
+
+function_bucket_name = "<function_bucket_name>"
+
+billing_account_id = "<billing_account_id>"
+
+billing_data_export_project_id = "<billing_data_export_project_id>"
+
+bigquery_dataset = "<bigquery_dataset>"
+
+bigquery_dataset_table = "<bigquery_dataset_table>"
+
+budget_projects = [
+  "<project_id1>",
+  "<project_id2>"
+]
+
+general_billing_account_alerts = "<ON or OFF>"

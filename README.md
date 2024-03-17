@@ -1,28 +1,48 @@
-DAILY AVERAGE BUDGET SERVICE FOR GOOGLE CLOUD PLATFORM
+# Daily Budget Alert Automation Tool
 
-The purpose of this service is to quickly set up a Cloud Function (along with all of
+## Introduction
+
+The purpose of this tool is to quickly set up a Cloud Function (along with all of
 the necessary infrastructure) which calculates the daily average spend of a given
 billing account, and creates a budget (based on the calculated amount)on the same 
-billing account for the following day. The service also creates a Cloud Scheduler
+billing account for the following day. The tool also creates a Cloud Scheduler
 job which runs every day at 12:00 Israel Standard Time (UTC +2:00) and triggers
 the created Cloud Function.
 
-INSTALL INSTRUCTIONS:
+## Pre-requisites
 
-First, create a bucket in your project to store the Terraform state of this service, 
-if you have not already. Have the name of this bucket ready. Take the name of your 
-Terraform state bucket and put it in terraform/backend.tf, instead of BUCKET_NAME_GOES_HERE.
-Then, just provide input variables and run "terraform init" and "terraform apply"
-from the "terraform" directory.
+- Make sure that the user running terraform for deploying this tool has the necessary permissions:
+    - TODO: Add permissions list
+- Create a bucket in your project to store the Terraform state of this tool, if you have not already.
+- Have the name of this bucket ready.
+- Take the name of your Terraform state bucket and put it in terraform/backend.tf, instead of BUCKET_NAME_GOES_HERE.
+- Fill the provided terraform.tfvars.example file with your own values and rename it to terraform.tfvars
 
-UNINSTALL INSTRUCTIONS:
+## Usage
 
-Remove all infrastructure created by this service by running "terraform destroy"
-from the "terraform" directory. 
+Once you have filled the terraform.tfvars file with your own values, you can run the following commands to deploy the tool:
 
-Note that this service does NOT manage its own Terraform state bucket.
+1. Initialize the terraform workspace
+```bash
+terraform init
+```
 
-SUPPORT:
+2. Plan the deployment to check what resources will be created/modifed/destroyed
+```bash
+terraform plan
+```
+
+3. Apply the terraform plan and provision the resources
+```bash
+terraform apply
+```
+
+4. In case you want to destroy the resources, run the following command
+```bash
+terraform destroy
+```
+
+## Support
 
 For issues please contact: akiva.ashkenazi@comm-it.cloud
 
