@@ -36,5 +36,9 @@ resource "null_resource" "trigger_on_service_change" {
   depends_on = [google_project_service.gcp_services]
 }
 
+# Load the yaml configuration file 
+data "yamldecode" "config" {
+  file = "${path.module}/config.yaml"
+}
 
 
