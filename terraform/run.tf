@@ -47,8 +47,10 @@ resource "local_file" "function_config" {
     billing_data_export_project_id = var.billing_data_export_project_id,
     bigquery_dataset               = var.bigquery_dataset,
     bigquery_dataset_table         = var.bigquery_dataset_table,
-    budget_projects                = join(",", var.budget_projects)
-    GENERAL_BILLING_ACCOUNT_ALERTS = var.general_billing_account_alerts
+    budget_projects                = join(",", var.budget_projects),
+    GENERAL_BILLING_ACCOUNT_ALERTS = var.general_billing_account_alerts,
+    services_by_project            = jsonencode(var.services_by_project)
+    billing_account_services       = join(",", var.billing_account_services)
   })
 }
 
@@ -154,7 +156,7 @@ resource "google_project_iam_member" "daily_budget_cloud_scheduler_job_invoker_m
 resource "google_cloud_scheduler_job" "cloud_run_trigger" {
   name        = "cloud-run-job-trigger"
   description = "Trigger for Cloud Run Job"
-  schedule = "0 12 * * *"
+  schedule    = "0 12 * * *"
 
   http_target {
     uri         = module.function.function_uri

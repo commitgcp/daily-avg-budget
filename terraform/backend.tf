@@ -1,7 +1,7 @@
 terraform {
   backend "gcs" {
     #Replace this with terraform output during setup
-    bucket = "wiliot-billing-alerts-tf"
+    bucket = "BUCKET NAME GOES HERE"
     prefix = "terraform/state"
   }
 }

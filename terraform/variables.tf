@@ -65,3 +65,13 @@ variable "general_billing_account_alerts" {
   type        = string
   description = "Set to ON if want alerts on entire billing account, OFF otherwise"
 }
+
+variable "services_by_project" {
+  type        = map(list(string))
+  description = "A map where each key is a project and its value is a list of services, for setting budgets on service usage per project. If you want to set a bucget on ALL services within a project, leave the value(list) empty."
+}
+
+variable "billing_account_services" {
+  type        = list(string)
+  description = "List of services for which to set up budgets on the entire billing account (for all projects)."
+}

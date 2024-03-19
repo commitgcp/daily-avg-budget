@@ -5,6 +5,7 @@ from googleapiclient import discovery
 from datetime import datetime, timedelta
 from googleapiclient import discovery, errors
 import pytz
+import json
 
 def create_daily_avg_budget(project : str = ""):
     data_project_id = "${billing_data_export_project_id}"
@@ -212,6 +213,12 @@ def main(request):
     budget_projects = "${budget_projects}"
     budget_projects = budget_projects.strip().split(",")
     print(budget_projects)
+    services_by_project = json.loads('''${services_by_project}''')
+    #Should be same as above
+    print(services_by_project.keys())
+    billing_account_services = "${billing_account_services}"
+    billing_account_services = billing_account_services.strip().split(",")
+    print(billing_account_services)
 
     if "${GENERAL_BILLING_ACCOUNT_ALERTS}" == "ON":
         create_daily_avg_budget()

@@ -39,3 +39,11 @@ budget_projects = [
 ]
 
 general_billing_account_alerts = "<ON or OFF>"
+
+services_by_project = {
+  "<project_id1>" = ["Service Name 1", "Service Name 2"]
+  "<project_id2>" = ["Service Name 3"]
+  "<project_id3>" = []
+}
+
+billing_account_services = ["Service Name 4", "Service Name 5"]

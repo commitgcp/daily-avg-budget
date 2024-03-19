@@ -97,6 +97,7 @@ For issues please contact: akiva.ashkenazi@comm-it.cloud
 | <a name="input_bigquery_dataset"></a> [bigquery\_dataset](#input\_bigquery\_dataset) | dataset in the billing export project where the billing data is held | `string` | n/a | yes |
 | <a name="input_bigquery_dataset_table"></a> [bigquery\_dataset\_table](#input\_bigquery\_dataset\_table) | table in the dataset in the billing export project where the billing data is held | `string` | n/a | yes |
 | <a name="input_billing_account_id"></a> [billing\_account\_id](#input\_billing\_account\_id) | id of the billing account on which to put a budget | `string` | n/a | yes |
+| <a name="input_billing_account_services"></a> [billing\_account\_services](#input\_billing\_account\_services) | List of services for which to set up budgets on the entire billing account (for all projects). | `list(string)` | n/a | yes |
 | <a name="input_billing_data_export_project_id"></a> [billing\_data\_export\_project\_id](#input\_billing\_data\_export\_project\_id) | id of the project which has the billing export data for the desired billing account | `string` | n/a | yes |
 | <a name="input_budget_projects"></a> [budget\_projects](#input\_budget\_projects) | List of projects for which to set up budgets. They must be connected to the billing account provided. The list may be empty. | `list(string)` | n/a | yes |
 | <a name="input_emails"></a> [emails](#input\_emails) | List of email addresses for notification channels | `list(string)` | n/a | yes |
@@ -105,6 +106,7 @@ For issues please contact: akiva.ashkenazi@comm-it.cloud
 | <a name="input_general_billing_account_alerts"></a> [general\_billing\_account\_alerts](#input\_general\_billing\_account\_alerts) | Set to ON if want alerts on entire billing account, OFF otherwise | `string` | n/a | yes |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | GCP project ID | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | n/a | yes |
+| <a name="input_services_by_project"></a> [services\_by\_project](#input\_services\_by\_project) | A map where each key is a project and its value is a list of services, for setting budgets on service usage per project. If you want to set a bucget on ALL services within a project, leave the value(list) empty. | `map(list(string))` | n/a | yes |
 
 ## Outputs
 
