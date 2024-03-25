@@ -1,7 +1,7 @@
 terraform {
   backend "gcs" {
-    #Replace this with terraform output during setup
-    bucket = "tf-state-budget-automation"
+    #Replace this with your state bucket
+    bucket = ""
     prefix = "terraform/state"
   }
 }
