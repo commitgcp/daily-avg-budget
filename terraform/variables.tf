@@ -22,7 +22,8 @@ variable "gcp_service_list" {
     "cloudfunctions.googleapis.com",
     "bigquery.googleapis.com",
     "billingbudgets.googleapis.com",
-    "discoveryengine.googleapis.com"
+    "discoveryengine.googleapis.com",
+    "cloudbilling.googleapis.com"
   ]
 }
 
@@ -58,7 +59,7 @@ variable "bigquery_dataset_table" {
 
 variable "budget_projects" {
   type        = list(string)
-  description = "List of projects for which to set up budgets. They must be connected to the billing account provided. The list may be empty."
+  description = "List of projects for which to set up budgets (without filtering by service). They must be connected to the billing account provided. The list may be empty."
 }
 
 variable "general_billing_account_alerts" {
@@ -67,11 +68,21 @@ variable "general_billing_account_alerts" {
 }
 
 variable "services_by_project" {
-  type        = map(list(string))
-  description = "A map where each key is a project and its value is a list of services, for setting budgets on service usage per project. If you want to set a bucget on ALL services within a project, leave the value(list) empty."
+  type        = map(list(list(string)))
+  description = "A map where each key is a project and its value is a list of services, for setting budgets on service usage per project."
 }
 
 variable "billing_account_services" {
+  type        = list(list(string))
+  description = "List of services for which to set up budgets on the entire billing account (for all projects). If general_billing_account_alerts is not ON, this does nothing."
+}
+
+variable "threshold_percentages" {
   type        = list(string)
-  description = "List of services for which to set up budgets on the entire billing account (for all projects)."
+  description = "List of threshold percentages, formatted as strings. Ex 50% should be formatted as \".50\""
+}
+
+variable "budget_ceiling" {
+  type        = string
+  description = "Percent of daily average spend at which the customer should be concerned - for example, if the user is OK with spending in one day at most 20% over the daily average, this should be \"1.20\""
 }

@@ -49,8 +49,10 @@ resource "local_file" "function_config" {
     bigquery_dataset_table         = var.bigquery_dataset_table,
     budget_projects                = join(",", var.budget_projects),
     GENERAL_BILLING_ACCOUNT_ALERTS = var.general_billing_account_alerts,
-    services_by_project            = jsonencode(var.services_by_project)
-    billing_account_services       = join(",", var.billing_account_services)
+    services_by_project            = jsonencode(var.services_by_project),
+    billing_account_services       = jsonencode(var.billing_account_services),
+    threshold_percentages          = join(",", var.threshold_percentages),
+    budget_ceiling                 = var.budget_ceiling
   })
 }
 

@@ -47,3 +47,7 @@ services_by_project = {
 }
 
 billing_account_services = ["Service Name 4", "Service Name 5"]
+
+threshold_percentages = [".50", "1.00", "1.50"]
+
+budget_ceiling = "1.20"
