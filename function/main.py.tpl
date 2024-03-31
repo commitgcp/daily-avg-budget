@@ -152,7 +152,8 @@ def create_daily_avg_budget(project : str = ""):
                 {"thresholdPercent": 1.50},
         ],
         "notificationsRule": {
-            "monitoringNotificationChannels": channel_full_names
+            "monitoringNotificationChannels": channel_full_names,
+            "disableDefaultIamRecipients": True
         },
         "budgetFilter": budget_filter
     }
