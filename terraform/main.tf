@@ -3,15 +3,15 @@ provider "google" {
   project = var.project_id
   region  = var.region
   default_labels = {
-    "Purpose": "budget_alerts"
+    "purpose" : "budget_alerts"
   }
 }
 
 terraform {
   required_providers {
     google = {
-      source  = "hashicorp/google"
-      version = "4.84.0" # Specify the minimum version you need
+      source = "hashicorp/google"
+      #version = "5.0.0" # Specify the minimum version you need
     }
   }
 }

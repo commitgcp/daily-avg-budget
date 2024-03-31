@@ -110,35 +110,61 @@ resource "google_bigquery_table_iam_member" "dataset_table_user" {
   depends_on = [null_resource.trigger_on_service_change]
 }
 
-module "function" {
-  depends_on = [google_storage_bucket_object.function_source, null_resource.trigger_on_service_change]
-  source     = "GoogleCloudPlatform/cloud-functions/google"
-  #  version    = "~> 0.4"
+#module "function" {
+#  depends_on = [google_storage_bucket_object.function_source, null_resource.trigger_on_service_change]
+#  source     = "GoogleCloudPlatform/cloud-functions/google"
+#  #  version    = "~> 0.4"
+#
+#  # Required variables
+#  function_name     = "daily-average-budget-function"
+#  function_location = var.region
+#  project_id        = var.project_id
+#  runtime           = "python312"
+#  build_env_variables = {
+#    GOOGLE_FUNCTION_SOURCE = "main.py"
+#  }
+#  entrypoint = "main"
+#  storage_source = {
+#    bucket     = var.function_bucket_name
+#    object     = "function-${local.function_hash}.zip"
+#    generation = null
+#  }
+#  service_config = {
+#    timeout_seconds       = "3600"
+#    service_account_email = module.function_sa.email
+#    ingress_settings      = "ALLOW_INTERNAL_ONLY"
+#    #    available_memory      = "512M"
+#  }
+#}
 
-  # Required variables
-  function_name     = "daily-average-budget-function"
-  function_location = var.region
-  project_id        = var.project_id
-  runtime           = "python312"
-  build_env_variables = {
-    GOOGLE_FUNCTION_SOURCE = "main.py"
+resource "google_cloudfunctions2_function" "function" {
+
+  project  = var.project_id
+  location = var.region
+  name     = "daily-average-budget-function"
+  build_config {
+    environment_variables = {
+      "GOOGLE_FUNCTION_SOURCE" = "main.py"
+    }
+    runtime     = "python312"
+    entry_point = "main"
+    source {
+      storage_source {
+        bucket = var.function_bucket_name
+        object = "function-${local.function_hash}.zip"
+      }
+    }
   }
-  entrypoint = "main"
-  storage_source = {
-    bucket     = var.function_bucket_name
-    object     = "function-${local.function_hash}.zip"
-    generation = null
-  }
-  service_config = {
-    timeout_seconds       = "3600"
+  service_config {
+    timeout_seconds       = 3600
+    max_instance_count    = 3
     service_account_email = module.function_sa.email
     ingress_settings      = "ALLOW_INTERNAL_ONLY"
-    #    available_memory      = "512M"
   }
 }
 
 output "function_uri" {
-  value       = module.function.function_uri
+  value       = google_cloudfunctions2_function.function.url
   description = "The uri of the function."
 }
 
@@ -161,7 +187,7 @@ resource "google_cloud_scheduler_job" "cloud_run_trigger" {
   schedule    = "0 12 * * *"
 
   http_target {
-    uri         = module.function.function_uri
+    uri         = google_cloudfunctions2_function.function.url
     http_method = "GET"
     oidc_token {
       service_account_email = google_service_account.daily_budget_cloud_scheduler_job_invoker.email
@@ -171,6 +197,6 @@ resource "google_cloud_scheduler_job" "cloud_run_trigger" {
   }
 
   time_zone  = "Asia/Jerusalem"
-  depends_on = [module.function, null_resource.trigger_on_service_change]
+  depends_on = [google_cloudfunctions2_function.function, null_resource.trigger_on_service_change]
 }
 

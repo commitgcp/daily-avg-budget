@@ -52,16 +52,14 @@ For issues please contact: akiva.ashkenazi@comm-it.cloud
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-| Name | Version |
-|------|---------|
-| <a name="requirement_google"></a> [google](#requirement\_google) | 4.84.0 |
+No requirements.
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_archive"></a> [archive](#provider\_archive) | 2.4.2 |
-| <a name="provider_google"></a> [google](#provider\_google) | 4.84.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | 5.22.0 |
 | <a name="provider_local"></a> [local](#provider\_local) | 2.5.1 |
 | <a name="provider_null"></a> [null](#provider\_null) | 3.2.2 |
 
@@ -69,7 +67,6 @@ For issues please contact: akiva.ashkenazi@comm-it.cloud
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_function"></a> [function](#module\_function) | GoogleCloudPlatform/cloud-functions/google | n/a |
 | <a name="module_function_bucket"></a> [function\_bucket](#module\_function\_bucket) | terraform-google-modules/cloud-storage/google//modules/simple_bucket | n/a |
 | <a name="module_function_sa"></a> [function\_sa](#module\_function\_sa) | terraform-google-modules/service-accounts/google | n/a |
 
@@ -77,15 +74,16 @@ For issues please contact: akiva.ashkenazi@comm-it.cloud
 
 | Name | Type |
 |------|------|
-| [google_bigquery_table_iam_member.dataset_table_user](https://registry.terraform.io/providers/hashicorp/google/4.84.0/docs/resources/bigquery_table_iam_member) | resource |
-| [google_billing_account_iam_member.billing_costs_manager](https://registry.terraform.io/providers/hashicorp/google/4.84.0/docs/resources/billing_account_iam_member) | resource |
-| [google_billing_account_iam_member.billing_viewer](https://registry.terraform.io/providers/hashicorp/google/4.84.0/docs/resources/billing_account_iam_member) | resource |
-| [google_cloud_scheduler_job.cloud_run_trigger](https://registry.terraform.io/providers/hashicorp/google/4.84.0/docs/resources/cloud_scheduler_job) | resource |
-| [google_monitoring_notification_channel.email_channels](https://registry.terraform.io/providers/hashicorp/google/4.84.0/docs/resources/monitoring_notification_channel) | resource |
-| [google_project_iam_member.daily_budget_cloud_scheduler_job_invoker_member](https://registry.terraform.io/providers/hashicorp/google/4.84.0/docs/resources/project_iam_member) | resource |
-| [google_project_service.gcp_services](https://registry.terraform.io/providers/hashicorp/google/4.84.0/docs/resources/project_service) | resource |
-| [google_service_account.daily_budget_cloud_scheduler_job_invoker](https://registry.terraform.io/providers/hashicorp/google/4.84.0/docs/resources/service_account) | resource |
-| [google_storage_bucket_object.function_source](https://registry.terraform.io/providers/hashicorp/google/4.84.0/docs/resources/storage_bucket_object) | resource |
+| [google_bigquery_table_iam_member.dataset_table_user](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_table_iam_member) | resource |
+| [google_billing_account_iam_member.billing_costs_manager](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/billing_account_iam_member) | resource |
+| [google_billing_account_iam_member.billing_viewer](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/billing_account_iam_member) | resource |
+| [google_cloud_scheduler_job.cloud_run_trigger](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloud_scheduler_job) | resource |
+| [google_cloudfunctions2_function.function](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloudfunctions2_function) | resource |
+| [google_monitoring_notification_channel.email_channels](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/monitoring_notification_channel) | resource |
+| [google_project_iam_member.daily_budget_cloud_scheduler_job_invoker_member](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
+| [google_project_service.gcp_services](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_service) | resource |
+| [google_service_account.daily_budget_cloud_scheduler_job_invoker](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account) | resource |
+| [google_storage_bucket_object.function_source](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_object) | resource |
 | [local_file.function_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
 | [null_resource.trigger_on_service_change](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
 | [archive_file.function_zip](https://registry.terraform.io/providers/hashicorp/archive/latest/docs/data-sources/file) | data source |
